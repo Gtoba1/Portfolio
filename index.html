@@ -229,6 +229,26 @@
   .about-body p{font-size:1.05rem;color:#3a4150;}
   .about-body p+p{margin-top:16px;}
 
+  /* ---------- COMMUNITY & TALKS ---------- */
+  #community{background:#fff;}
+  .talks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px;}
+  .talk-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:12px;
+    padding:22px;display:flex;flex-direction:column;
+    transition:box-shadow .18s,border-color .18s;
+  }
+  .talk-card:hover{box-shadow:0 10px 28px -14px rgba(22,26,34,.18);border-color:var(--line-strong);}
+  .talk-tag{
+    font-family:var(--mono);font-size:.66rem;text-transform:uppercase;
+    letter-spacing:.12em;color:var(--muted);border:1px solid var(--line);
+    border-radius:99px;padding:4px 10px;display:inline-block;margin-bottom:12px;align-self:flex-start;
+  }
+  .talk-card h3{font-family:var(--display);font-size:1rem;font-weight:600;margin:0 0 8px;line-height:1.3;color:var(--ink);}
+  .talk-card p.talk-desc{font-size:.9rem;color:#444c5a;margin:0;flex:1;line-height:1.6;}
+  .talk-link{margin-top:16px;font-family:var(--mono);font-size:.8rem;color:var(--accent-deep);font-weight:500;display:inline-flex;align-items:center;gap:6px;}
+  .talk-link .arr{transition:transform .18s;}
+  .talk-card:hover .talk-link .arr{transform:translateX(4px);}
+
   #testimonials{background:#F0FAF7;}
 
   /* ---------- TESTIMONIALS CAROUSEL ---------- */
@@ -335,10 +355,12 @@
     .card.feature h3{font-size:1.3rem;}
     /* 2 cards visible on tablet */
     .testi-card{flex:0 0 calc((100% - 20px) / 2);}
+    .talks-grid{grid-template-columns:repeat(2,1fr);}
   }
   @media (max-width:560px){
     /* 1 card visible on mobile */
     .testi-card{flex:0 0 100%;}
+    .talks-grid{grid-template-columns:1fr;}
     .cbtn-row{flex-direction:column;align-items:center;}
     .hstat{padding-right:20px;margin-right:20px;}
   }
@@ -374,6 +396,7 @@
       <a href="#top">Home</a>
       <a href="#about">About</a>
       <a href="#portfolio">Portfolio</a>
+      <a href="#community">Talks</a>
       <a href="#testimonials">Reviews</a>
       <a href="#contact">Contact</a>
       <a class="nav-cta" href="cv.html">CV</a>
@@ -595,6 +618,71 @@
           <span class="tool-pill">Excel</span><span class="tool-pill">PivotTables</span>
         </div>
         <a class="read" href="https://medium.com/@gtoba1/superstore-analysis-and-report-d54a4e4b7a42" target="_blank" rel="noopener">Read project <span class="arr">→</span></a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COMMUNITY & TALKS — presentations, infographics, community work.
+     ============================================================ -->
+<section id="community">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Talks &amp; Community</span>
+      <h2>Beyond the dashboard</h2>
+      <p>Presentations, infographics, and community work that show how I communicate data to wider audiences.</p>
+    </div>
+    <div class="talks-grid">
+
+      <article class="talk-card reveal">
+        <span class="talk-tag">Infographic</span>
+        <h3>2024 Olympics Infographics</h3>
+        <p class="talk-desc">Visual storytelling with data from the Paris 2024 Olympic Games — athlete statistics, first-time gold medallists, and countries winning their debut medals.</p>
+        <a class="talk-link" href="https://tolutoba115.wixsite.com/website/portfolio-collections/my-portfolio/2024-olympics-infographics" target="_blank" rel="noopener">View slides <span class="arr">→</span></a>
+      </article>
+
+      <article class="talk-card reveal">
+        <span class="talk-tag">Analysis</span>
+        <h3>Cooking Gas Price Analysis in Nigeria</h3>
+        <p class="talk-desc">A 13-slide analysis of cooking gas pricing trends across Nigerian states, using bar charts and infographics to surface regional price variations.</p>
+        <a class="talk-link" href="https://tolutoba115.wixsite.com/website/portfolio-collections/my-portfolio/cooking-gas-price-analysis-in-nigeria" target="_blank" rel="noopener">View slides <span class="arr">→</span></a>
+      </article>
+
+      <article class="talk-card reveal">
+        <span class="talk-tag">Analysis</span>
+        <h3>Global Salary &amp; Cost Analysis — Crude Oil Nations</h3>
+        <p class="talk-desc">A comparative analysis of compensation and cost of living across major oil-producing countries worldwide, presented as a data story.</p>
+        <a class="talk-link" href="https://tolutoba115.wixsite.com/website/portfolio-collections/my-portfolio/global-salary-and-cost-analysis-for-crude-oil-producing-nations" target="_blank" rel="noopener">View slides <span class="arr">→</span></a>
+      </article>
+
+      <article class="talk-card reveal">
+        <span class="talk-tag">Community</span>
+        <h3>Data Community Africa Presentation</h3>
+        <p class="talk-desc">Presentation delivered for Data Community Africa covering the organization's mission, co-founders, and scholarship initiatives supporting analysts across the continent.</p>
+        <a class="talk-link" href="https://tolutoba115.wixsite.com/website/portfolio-collections/my-portfolio/data-community-africa-presentation" target="_blank" rel="noopener">View slides <span class="arr">→</span></a>
+      </article>
+
+      <article class="talk-card reveal">
+        <span class="talk-tag">Teaching</span>
+        <h3>Introduction to Data Analysis</h3>
+        <p class="talk-desc">An introductory presentation on data analysis fundamentals designed to onboard non-technical audiences into the world of data and its practical applications.</p>
+        <a class="talk-link" href="https://tolutoba115.wixsite.com/website/portfolio-collections/my-portfolio/introduction-to-data-analysis-presentation-slide" target="_blank" rel="noopener">View slides <span class="arr">→</span></a>
+      </article>
+
+      <article class="talk-card reveal">
+        <span class="talk-tag">Teaching</span>
+        <h3>Statistics for Data Analysis</h3>
+        <p class="talk-desc">A teaching deck covering statistical concepts behind data analysis — built to help audiences understand the mathematics that power data-driven decisions.</p>
+        <a class="talk-link" href="https://tolutoba115.wixsite.com/website/portfolio-collections/my-portfolio/statistics-for-data-analysis-slides" target="_blank" rel="noopener">View slides <span class="arr">→</span></a>
+      </article>
+
+      <article class="talk-card reveal">
+        <span class="talk-tag">Analysis</span>
+        <h3>Music Sales Analysis</h3>
+        <p class="talk-desc">A data-driven presentation analyzing music sales performance metrics, surfacing trends across genres, regions, and formats.</p>
+        <a class="talk-link" href="https://tolutoba115.wixsite.com/website/portfolio-collections/my-portfolio/music-sales-analysis-presentation" target="_blank" rel="noopener">View slides <span class="arr">→</span></a>
       </article>
 
     </div>

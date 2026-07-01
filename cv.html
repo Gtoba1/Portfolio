@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV — Gabriel Oloruntoba | Data Analyst</title>
+<meta name="description" content="CV of Gabriel Toluwalase Oloruntoba, Business Intelligence and Data Analyst specialising in Power BI, SQL, Excel, and DAX.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+  /* ========== DESIGN TOKENS ==========
+     Must stay in sync with index.html tokens.
+     ======================================= */
+  :root{
+    --ink:#161A22;
+    --ink-soft:#262C38;
+    --paper:#F6F7F9;
+    --card:#FFFFFF;
+    --line:#E3E6EC;
+    --line-strong:#CCD2DB;
+    --text:#1B2029;
+    --muted:#646C7A;
+    --accent:#1E8A6E;
+    --accent-deep:#13624E;
+    --display:"Space Grotesk",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --maxw:1060px;
+  }
+
+  /* ========== RESET & BASE ========== */
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    overflow-x:hidden;
+    font-family:var(--body);
+    color:var(--text);
+    background-color:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  ul{margin:0;padding:0;}
+  p{margin:0;}
+
+  /* ========== UTILITIES ========== */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:saturate(140%) blur(8px);
+    background:rgba(246,247,249,0.82);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .brand{font-family:var(--display);font-weight:600;font-size:1rem;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;}
+  .brand .avatar{width:30px;height:30px;border-radius:50%;object-fit:cover;border:1px solid var(--line-strong);}
+  .nav-links{display:flex;gap:28px;align-items:center;}
+  .nav-links a{font-size:.9rem;color:var(--muted);font-weight:500;transition:color .15s;}
+  .nav-links a:hover{color:var(--text);}
+  /* current page indicator */
+  .nav-links a.active{color:var(--accent-deep);font-weight:600;}
+  .nav-cta{
+    font-family:var(--mono);font-size:.8rem;
+    border:1px solid var(--line-strong);
+    padding:8px 16px;border-radius:7px;color:var(--text);
+    transition:all .15s;
+  }
+  .nav-cta:hover{border-color:var(--accent);color:var(--accent-deep);}
+  .menu-btn{display:none;background:none;border:1px solid var(--line-strong);border-radius:7px;width:40px;height:38px;cursor:pointer;align-items:center;justify-content:center;}
+  .menu-btn span{display:block;width:18px;height:2px;background:var(--text);position:relative;}
+  .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--text);}
+  .menu-btn span::before{top:-6px;}.menu-btn span::after{top:6px;}
+
+  /* ---------- CV PAGE LAYOUT ---------- */
+  .cv-page{padding:52px 0 80px;}
+
+  /* top header block */
+  .cv-header{
+    padding-bottom:36px;
+    border-bottom:2px solid var(--ink);
+    margin-bottom:40px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:20px;
+  }
+  .cv-header-left{}
+  .cv-name{
+    font-family:var(--display);
+    font-size:clamp(1.9rem,4vw,2.7rem);
+    font-weight:700;
+    letter-spacing:-.025em;
+    line-height:1.05;
+    color:var(--ink);
+  }
+  .cv-role{
+    font-family:var(--mono);
+    font-size:.88rem;
+    color:var(--accent-deep);
+    margin-top:8px;
+    letter-spacing:.04em;
+  }
+  .cv-contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 22px;
+    margin-top:14px;
+  }
+  .cv-contact-row a,
+  .cv-contact-row span{
+    font-family:var(--mono);
+    font-size:.78rem;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:5px;
+  }
+  .cv-contact-row a:hover{color:var(--accent-deep);}
+
+  /* print / save button — hidden in print */
+  .print-btn{
+    font-family:var(--mono);
+    font-size:.8rem;
+    border:1px solid var(--line-strong);
+    background:var(--card);
+    color:var(--text);
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:all .15s;
+    white-space:nowrap;
+  }
+  .print-btn:hover{border-color:var(--accent);color:var(--accent-deep);}
+
+  /* ---------- TWO-COLUMN BODY ----------
+     Main (left): Summary, Experience, Projects
+     Sidebar (right): Skills, Education, Leadership
+  */
+  .cv-body{
+    display:grid;
+    grid-template-columns:1.65fr 1fr;
+    gap:0 52px;
+    align-items:start;
+  }
+
+  /* section heading rule */
+  .cv-sec{
+    margin-bottom:32px;
+  }
+  .cv-sec-head{
+    font-family:var(--display);
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent-deep);
+    border-bottom:1px solid var(--line-strong);
+    padding-bottom:8px;
+    margin:0 0 20px;
+  }
+
+  /* professional summary */
+  .summary-text{
+    font-size:.97rem;
+    color:#3a4150;
+    line-height:1.7;
+  }
+
+  /* experience entry */
+  .exp{margin-bottom:26px;}
+  .exp:last-child{margin-bottom:0;}
+  .exp-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:2px 12px;
+    margin-bottom:2px;
+  }
+  .exp-role{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1rem;
+    color:var(--ink);
+  }
+  .exp-dates{
+    font-family:var(--mono);
+    font-size:.75rem;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  .exp-company{
+    font-family:var(--mono);
+    font-size:.8rem;
+    color:var(--accent-deep);
+    margin-bottom:10px;
+    letter-spacing:.02em;
+  }
+  /* contract badge */
+  .badge{
+    font-size:.66rem;
+    font-family:var(--mono);
+    border:1px solid var(--line-strong);
+    border-radius:99px;
+    padding:2px 8px;
+    color:var(--muted);
+    margin-left:8px;
+    vertical-align:middle;
+  }
+  .exp ul{
+    padding-left:18px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .exp ul li{
+    font-size:.92rem;
+    color:#3a4150;
+    line-height:1.6;
+  }
+
+  /* projects (CV section) */
+  .proj-entry{margin-bottom:20px;}
+  .proj-entry:last-child{margin-bottom:0;}
+  .proj-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:4px;
+    margin-bottom:4px;
+  }
+  .proj-name{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:.97rem;
+    color:var(--ink);
+  }
+  .proj-year{
+    font-family:var(--mono);
+    font-size:.75rem;
+    color:var(--muted);
+  }
+  .proj-entry p{
+    font-size:.9rem;
+    color:#3a4150;
+    line-height:1.6;
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  .cv-sidebar{}
+
+  /* skill group */
+  .skill-group{margin-bottom:18px;}
+  .skill-label{
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:5px;
+  }
+  .skill-body{
+    font-size:.9rem;
+    color:var(--text);
+    line-height:1.6;
+  }
+
+  /* education entry */
+  .edu-degree{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:.95rem;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  .edu-school{
+    font-size:.88rem;
+    color:#3a4150;
+    line-height:1.5;
+  }
+  .edu-dates{
+    font-family:var(--mono);
+    font-size:.75rem;
+    color:var(--muted);
+    margin-top:3px;
+  }
+
+  /* leadership bullets */
+  .lead-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .lead-item{}
+  .lead-role{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:.92rem;
+    color:var(--ink);
+  }
+  .lead-body{
+    font-size:.88rem;
+    color:#3a4150;
+    line-height:1.55;
+    margin-top:2px;
+  }
+
+  /* sidebar divider between sections */
+  .cv-sidebar .cv-sec + .cv-sec{
+    border-top:1px solid var(--line);
+    padding-top:28px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer.foot{padding:40px 0 56px;}
+  .foot-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:26px;}
+  .foot-inner .fbrand{font-family:var(--display);font-weight:600;}
+  .foot-inner .fmeta{font-family:var(--mono);font-size:.76rem;color:var(--muted);}
+  .social{display:flex;gap:10px;}
+  .social a{width:38px;height:38px;border:1px solid var(--line-strong);border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--text);transition:all .15s;}
+  .social a:hover{border-color:var(--accent);color:var(--accent-deep);background:#fff;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:860px){
+    .nav-links{
+      display:none;position:absolute;top:64px;left:0;right:0;
+      flex-direction:column;align-items:flex-start;gap:0;
+      background:var(--paper);border-bottom:1px solid var(--line);padding:8px 24px 18px;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:12px 0;width:100%;border-bottom:1px solid var(--line);}
+    .nav-links .nav-cta{margin-top:10px;border-bottom:1px solid var(--line-strong);}
+    .menu-btn{display:flex;}
+    .cv-header{flex-direction:column;align-items:flex-start;}
+    .cv-body{grid-template-columns:1fr;}
+  }
+
+  /* ---------- PRINT STYLES ----------
+     Browser print / Save as PDF hides nav, footer, and button.
+     Produces a clean document-like output.
+  */
+  @media print{
+    header.nav,footer.foot,.print-btn{display:none!important;}
+    body{background:#fff;}
+    .cv-page{padding:0;}
+    .cv-header{padding-bottom:20px;margin-bottom:28px;}
+    .cv-body{gap:0 36px;}
+    .cv-sec{margin-bottom:22px;}
+    .exp{margin-bottom:18px;}
+    a{color:inherit;}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV — links back to portfolio sections via index.html
+     ============================================================ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img class="avatar" src="assets/images/headshot.jpeg" alt="Gabriel Oloruntoba">
+      Gabriel&nbsp;Oloruntoba
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="index.html#contact">Contact</a>
+      <a class="nav-cta active" href="cv.html">CV</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+
+<main>
+<div class="wrap cv-page">
+
+  <!-- ============================================================
+       CV HEADER — name, title, contact info, print button
+       ============================================================ -->
+  <div class="cv-header">
+    <div class="cv-header-left">
+      <div class="cv-name">Gabriel Toluwalase Oloruntoba</div>
+      <div class="cv-role">Business Intelligence &amp; Data Analyst</div>
+      <div class="cv-contact-row">
+        <span>Lagos, Nigeria</span>
+        <a href="tel:+2348142076239">+234 814 207 6239</a>
+        <a href="mailto:gabrieloloruntoba6@gmail.com">gabrieloloruntoba6@gmail.com</a>
+        <a href="https://linkedin.com/in/gabriel-toluwalase-oloruntoba" target="_blank" rel="noopener">linkedin.com/in/gabriel-toluwalase-oloruntoba ↗</a>
+      </div>
+    </div>
+    <button class="print-btn" onclick="window.print()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print / Save as PDF
+    </button>
+  </div>
+
+  <!-- ============================================================
+       TWO-COLUMN BODY
+       Left: Summary · Experience · Projects
+       Right: Skills · Education · Leadership
+       ============================================================ -->
+  <div class="cv-body">
+
+    <!-- LEFT / MAIN COLUMN -->
+    <div class="cv-main">
+
+      <!-- PROFESSIONAL SUMMARY -->
+      <div class="cv-sec">
+        <h2 class="cv-sec-head">Professional Summary</h2>
+        <p class="summary-text">Business Intelligence Analyst with 4+ years turning data into clear, actionable insight that supports operational, commercial, and strategic decisions. Builds and maintains Power BI dashboards, management scorecards, and recurring reports using DAX and Power Query, backed by advanced SQL for querying large datasets and advanced Excel for modelling and analysis. Strong in KPI development, trend, variance, and comparative analysis, and translating business questions into structured analytical outputs. Partners closely with Finance, Sales, Operations, and senior management, presenting findings clearly to technical and non-technical audiences and standardising KPI definitions to improve reporting governance. Commercially aware, detail-focused, and results-oriented, with a track record that includes designing a rebate tracking framework that enabled recovery of over $10M and lifting operational efficiency by 10%.</p>
+      </div>
+
+      <!-- WORK EXPERIENCE -->
+      <div class="cv-sec">
+        <h2 class="cv-sec-head">Work Experience</h2>
+
+        <!-- TD Africa -->
+        <div class="exp">
+          <div class="exp-top">
+            <span class="exp-role">Data & BI Analyst</span>
+            <span class="exp-dates">May 2025 – Present</span>
+          </div>
+          <div class="exp-company">TD Africa</div>
+          <ul>
+            <li>Designed and implemented a rebate tracking framework that identified revenue leakages and enabled the recovery of over $10M in OEM rebates, turning a manual, error-prone process into a governed, repeatable one.</li>
+            <li>Build and maintain core Power BI dashboards and management reports using DAX and Power Query, including Sales performance, CFO, Inventory, and Debt reports used by senior management for operational and strategic decisions.</li>
+            <li>Analyse business performance across sales, inventory, and financial measures, conducting trend, variance, and comparative analysis to identify risks and opportunities and investigate unusual movements in key metrics.</li>
+            <li>Write advanced SQL to extract and manipulate large datasets and standardise KPI definitions across functions, automating recurring reports to reduce reliance on manual spreadsheet preparation.</li>
+            <li>Partner with Finance, Sales, and Operations stakeholders to translate business questions into structured analysis, presenting clear commentary and recommendations to technical and non-technical audiences.</li>
+            <li>Validate reports against approved sources before publication, maintaining data accuracy and consistent interpretation of metrics across the business.</li>
+          </ul>
+        </div>
+
+        <!-- FCMB Group -->
+        <div class="exp">
+          <div class="exp-top">
+            <span class="exp-role">Business Intelligence Analyst <span class="badge">Contract</span></span>
+            <span class="exp-dates">Nov 2024 – Feb 2025</span>
+          </div>
+          <div class="exp-company">FCMB Group</div>
+          <ul>
+            <li>Built Excel and Power BI reporting on financial performance for Finance and Collections, applying variance and trend analysis to surface risks and opportunities.</li>
+            <li>Wrote SQL against Oracle databases to extract and reconcile high-volume transaction data, validating figures against approved sources in a regulated environment.</li>
+            <li>Communicated findings clearly to non-technical stakeholders across finance and compliance, supporting evidence-based decisions.</li>
+          </ul>
+        </div>
+
+        <!-- Splendor Analytics -->
+        <div class="exp">
+          <div class="exp-top">
+            <span class="exp-role">Business Intelligence / Data Analyst</span>
+            <span class="exp-dates">Mar 2022 – May 2025</span>
+          </div>
+          <div class="exp-company">Splendor Analytics</div>
+          <ul>
+            <li>Built Power BI dashboards and recurring reports for multi-location client organisations, evaluating performance by store, region, product, and time period across 50,000+ records.</li>
+            <li>Conducted customer, product, and store segmentation analysis and evaluated campaign and promotional effectiveness using pre/post and year-on-year comparisons.</li>
+            <li>Improved client operational efficiency by 10% through structured analysis, clear recommendations, and standardised KPI reporting.</li>
+            <li>Wrote SQL to query large relational databases and presented findings to stakeholders at all levels, distinguishing facts, assumptions, and recommendations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SELECTED PROJECTS -->
+      <div class="cv-sec">
+        <h2 class="cv-sec-head">Selected Projects</h2>
+
+        <div class="proj-entry">
+          <div class="proj-top">
+            <span class="proj-name">Sales &amp; Store Performance Dashboard</span>
+            <span class="proj-year">2025</span>
+          </div>
+          <p>Built a Power BI dashboard tracking sales, product mix, and store performance with DAX measures, enabling YoY and like-for-like comparisons across locations.</p>
+        </div>
+
+        <div class="proj-entry">
+          <div class="proj-top">
+            <span class="proj-name">Inventory &amp; Operations Analysis</span>
+            <span class="proj-year">2025</span>
+          </div>
+          <p>Consolidated fragmented operational data with SQL and Excel into a single reporting layer tracking inventory and operational KPIs, flagging exceptions for action.</p>
+        </div>
+
+        <div class="proj-entry">
+          <div class="proj-top">
+            <span class="proj-name">Customer &amp; Promotional Effectiveness Analysis</span>
+            <span class="proj-year">2024</span>
+          </div>
+          <p>Analysed customer behaviour and promotional effectiveness across 10 locations using segmentation and pre/post comparison, informing pricing and campaign decisions.</p>
+        </div>
+
+        <div class="proj-entry">
+          <div class="proj-top">
+            <span class="proj-name">Logistics Performance Dashboard</span>
+            <span class="proj-year">2024</span>
+          </div>
+          <p>Star-schema model in Power BI covering 2020–2024 shipment data. Analysed delivery performance, carrier efficiency, and financial metrics across regions. Documented end to end in a six-part video series.</p>
+        </div>
+
+        <div class="proj-entry">
+          <div class="proj-top">
+            <span class="proj-name">Supplier Quality &amp; Performance Dashboard</span>
+            <span class="proj-year">2024</span>
+          </div>
+          <p>Modelled 5,000+ supplier records into fact and dimension tables with custom DAX measures. Flagged high-risk vendors, critical defects, and downtime trends for targeted management intervention.</p>
+        </div>
+      </div>
+
+    </div><!-- /cv-main -->
+
+    <!-- RIGHT / SIDEBAR COLUMN -->
+    <div class="cv-sidebar">
+
+      <!-- CORE SKILLS -->
+      <div class="cv-sec">
+        <h2 class="cv-sec-head">Core Skills</h2>
+
+        <div class="skill-group">
+          <div class="skill-label">SQL</div>
+          <div class="skill-body">Advanced querying across relational databases: joins, aggregations, window functions, Oracle and SQL Server</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-label">Power BI</div>
+          <div class="skill-body">Dashboards, management scorecards, DAX measures, Power Query, data modelling, report automation</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-label">Microsoft Excel</div>
+          <div class="skill-body">Advanced formulas, pivot tables, Power Query, lookups, modelling and management reporting</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-label">Analytics</div>
+          <div class="skill-body">KPI development, trend and variance analysis, YoY / like-for-like, forecasting, segmentation</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-label">Data Quality &amp; Governance</div>
+          <div class="skill-body">Report validation, standardising KPI definitions, resolving discrepancies before publication</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-label">Business Partnering</div>
+          <div class="skill-body">Stakeholder management across Finance, Sales, Operations; data storytelling for non-technical audiences</div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-label">Other</div>
+          <div class="skill-body">Python (Pandas, NumPy), IBM SPSS, star-schema data modelling</div>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="cv-sec">
+        <h2 class="cv-sec-head">Education</h2>
+        <div class="edu-degree">BTech, Estate Management &amp; Valuation</div>
+        <div class="edu-school">Federal University of Technology, Minna, Niger State</div>
+        <div class="edu-dates">2014 – 2019</div>
+      </div>
+
+      <!-- LEADERSHIP & COMMUNITY -->
+      <div class="cv-sec">
+        <h2 class="cv-sec-head">Leadership &amp; Community</h2>
+        <div class="lead-list">
+          <div class="lead-item">
+            <div class="lead-role">Co-Founder &amp; Co-Lead</div>
+            <div class="lead-body">Abuja Power BI User Group. Coordinates learning sessions, community discussions, and knowledge-sharing events for data professionals, promoting analytics in decision-making.</div>
+          </div>
+          <div class="lead-item">
+            <div class="lead-role">Team Lead</div>
+            <div class="lead-body">Data Community Africa. Supports community-driven training initiatives and analytics events, building relationships across the African data community.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cv-sidebar -->
+
+  </div><!-- /cv-body -->
+</div><!-- /cv-page -->
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span class="fbrand">Gabriel Oloruntoba</span>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/gabriel-toluwalase-oloruntoba" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.07c.67-1.2 2.3-2.5 4.73-2.5 5.06 0 6 3.33 6 7.66V24h-5v-7.4c0-1.77-.03-4.05-2.47-4.05-2.47 0-2.85 1.93-2.85 3.92V24h-5V8z"/></svg>
+      </a>
+      <a href="https://twitter.com/G_toluwalase" target="_blank" rel="noopener" aria-label="X">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.6l5.24 6.93 6.06-6.93zm-1.29 19.5h2.04L6.48 3.24H4.3L17.61 20.65z"/></svg>
+      </a>
+    </div>
+    <span class="fmeta">Built with data in mind · 2026</span>
+  </div>
+</footer>
+
+<script>
+  /* ---- MOBILE HAMBURGER MENU ---- */
+  const btn=document.getElementById('menuBtn');
+  const links=document.getElementById('navLinks');
+  btn.addEventListener('click',()=>{
+    const open=links.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open);
+  });
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    links.classList.remove('open');btn.setAttribute('aria-expanded',false);
+  }));
+</script>
+</body>
+</html>
